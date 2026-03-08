@@ -1,0 +1,146 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-overlay);
+  animation: overlayFadeIn 0.2s ease;
+  padding: 20px;
+}
+
+.modal {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 40px);
+  overflow: hidden;
+  animation: modalSlideIn 0.25s ease;
+}
+
+/* Sizes */
+
+.sm {
+  width: 360px;
+  max-width: 100%;
+}
+
+.md {
+  width: 480px;
+  max-width: 100%;
+}
+
+.lg {
+  width: 640px;
+  max-width: 100%;
+}
+
+.xl {
+  width: 800px;
+  max-width: 100%;
+}
+
+.fullscreen {
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  border-radius: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  background-color: var(--color-bg-hover);
+  color: var(--color-text-primary);
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal {
+    width: 100%;
+    max-height: 90vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    animation: modalSlideUp 0.3s ease;
+  }
+
+  .fullscreen {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

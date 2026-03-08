@@ -1,0 +1,134 @@
+.container {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  max-width: 400px;
+  width: calc(100% - 32px);
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+  pointer-events: all;
+  animation: toastSlideIn 0.3s ease;
+  transition: all 0.2s ease;
+}
+
+.toast.exiting {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* Variants */
+
+.success {
+  border-left: 3px solid var(--color-success);
+}
+
+.success .icon {
+  color: var(--color-success);
+}
+
+.error {
+  border-left: 3px solid var(--color-error);
+}
+
+.error .icon {
+  color: var(--color-error);
+}
+
+.warning {
+  border-left: 3px solid var(--color-warning);
+}
+
+.warning .icon {
+  color: var(--color-warning);
+}
+
+.info {
+  border-left: 3px solid var(--color-info);
+}
+
+.info .icon {
+  color: var(--color-info);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.message {
+  flex: 1;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.close:hover {
+  background-color: var(--color-bg-hover);
+  color: var(--color-text-primary);
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    top: auto;
+    bottom: 16px;
+    right: 8px;
+    left: 8px;
+    width: auto;
+    max-width: none;
+    align-items: stretch;
+  }
+
+  @keyframes toastSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .toast.exiting {
+    transform: translateY(100%);
+  }
+}

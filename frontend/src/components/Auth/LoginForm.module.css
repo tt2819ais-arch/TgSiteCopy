@@ -1,0 +1,88 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 380px;
+  animation: fadeSlideUp 0.4s ease;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.authError {
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background-color: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.2);
+  color: var(--color-error);
+  font-size: 13px;
+  text-align: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.switchText {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.switchLink {
+  color: var(--color-accent);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  background: none;
+  border: none;
+  font-size: 14px;
+  padding: 0;
+}
+
+.switchLink:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,167 @@
+.recorder {
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  padding: 12px 16px;
+  animation: slideUp 0.2s ease;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-error);
+  font-size: 14px;
+}
+
+.closeBtn {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.closeBtn:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cancelBtn {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.cancelBtn:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.recordBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-error);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.recordBtn:hover {
+  opacity: 0.9;
+}
+
+.recordDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background-color: #ffffff;
+}
+
+.recording {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recordingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.recordingDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-error);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.recordingTime {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.stopBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.stopBtn:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.audioPreview {
+  width: 100%;
+  height: 40px;
+  border-radius: var(--radius-md);
+}
+
+.previewActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.discardBtn {
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.discardBtn:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.sendBtn {
+  padding: 8px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  transition: all var(--transition-fast);
+}
+
+.sendBtn:hover {
+  background-color: var(--color-accent-hover);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}

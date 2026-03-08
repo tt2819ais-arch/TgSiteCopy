@@ -1,0 +1,69 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  position: relative;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #ffffff;
+  user-select: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.avatar:hover .overlay {
+  opacity: 1;
+}
+
+.fileInput {
+  display: none;
+}
+
+.removeBtn {
+  font-size: 13px;
+  color: var(--color-error);
+  transition: opacity var(--transition-fast);
+}
+
+.removeBtn:hover {
+  opacity: 0.8;
+}
+
+.spinIcon {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

@@ -1,0 +1,166 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  white-space: nowrap;
+  user-select: none;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Sizes */
+
+.sm {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+}
+
+.md {
+  height: 40px;
+  padding: 0 18px;
+  font-size: 14px;
+}
+
+.lg {
+  height: 48px;
+  padding: 0 24px;
+  font-size: 15px;
+  border-radius: var(--radius-lg);
+}
+
+/* Variants */
+
+.primary {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.primary:hover:not(:disabled) {
+  background-color: var(--color-accent-hover);
+}
+
+.secondary {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: var(--color-bg-hover);
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+}
+
+.ghost:hover:not(:disabled) {
+  background-color: var(--color-bg-hover);
+  color: var(--color-text-primary);
+}
+
+.danger {
+  background-color: var(--color-error);
+  color: #ffffff;
+}
+
+.danger:hover:not(:disabled) {
+  background-color: #d32f2f;
+}
+
+.accent {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.accent:hover:not(:disabled) {
+  background-color: rgba(51, 144, 236, 0.25);
+}
+
+/* Modifiers */
+
+.fullWidth {
+  width: 100%;
+}
+
+.iconOnly {
+  padding: 0;
+  width: 40px;
+}
+
+.iconOnly.sm {
+  width: 32px;
+}
+
+.iconOnly.lg {
+  width: 48px;
+}
+
+.loading {
+  pointer-events: none;
+}
+
+/* Elements */
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.iconRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.spinnerIcon {
+  width: 20px;
+  height: 20px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

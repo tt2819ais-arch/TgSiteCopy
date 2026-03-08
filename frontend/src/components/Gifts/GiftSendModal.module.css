@@ -1,0 +1,89 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.giftPreview {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.giftImage {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.giftInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.giftName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.giftPrice {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.recipient {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recipientLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.recipientName {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.messageField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.messageLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.messageInput {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: var(--color-bg-input);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-family: var(--font-family);
+  resize: vertical;
+  min-height: 60px;
+}
+
+.messageInput:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.messageInput::placeholder {
+  color: var(--color-text-tertiary);
+}

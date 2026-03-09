@@ -1,0 +1,3 @@
+-- Migration 001: Initial schema
+-- Запустить schema.sql для создания всех таблиц
+-- \i schema.sql

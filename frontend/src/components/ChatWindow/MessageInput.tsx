@@ -147,7 +147,6 @@ if (editingMessage) setText(’’);
     )}
   </div>
 </div>
-```
 
 );
 }

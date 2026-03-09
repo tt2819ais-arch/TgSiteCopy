@@ -1,0 +1,19 @@
+{
+  "name": "Nyxgram",
+  "short_name": "Nyxgram",
+  "description": "Быстрый и безопасный мессенджер",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0f0f0f",
+  "background_color": "#0f0f0f",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

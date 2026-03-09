@@ -62,4 +62,52 @@ export function MediaPreview({ chatId, files, onClose, onSend }: MediaPreviewPro
             <span className={styles.fileName}>{file.name}</span>
             <span className={styles.fileSize}>{formatFileSize(file.size)}</span>
           </div>
-        
+        </div>
+      );
+    }
+
+    return (
+      <div key={index} className={styles.previewItem}>
+        <div className={styles.fileIcon}>📎</div>
+        <div className={styles.fileInfo}>
+          <span className={styles.fileName}>{file.name}</span>
+          <span className={styles.fileSize}>{formatFileSize(file.size)}</span>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className={styles.overlay}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <span>Отправить файлы ({files.length})</span>
+          <button onClick={onClose} className={styles.closeButton}>✕</button>
+        </div>
+
+        <div className={styles.previewList}>
+          {files.map((file, index) => renderPreview(file, index))}
+        </div>
+
+        <div className={styles.footer}>
+          <input
+            type="text"
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
+            placeholder="Добавить подпись..."
+            className={styles.captionInput}
+          />
+          <button
+            onClick={handleSend}
+            disabled={sending}
+            className={styles.sendButton}
+          >
+            {sending ? 'Отправка...' : 'Отправить'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default MediaPreview;

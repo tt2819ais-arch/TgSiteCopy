@@ -171,4 +171,99 @@ export const useChatStore = create<ChatState>((set, get) => ({
     }));
   },
 
-  searchChats: 
+    searchChats: async (query) => {
+    set({ searchQuery: query });
+
+    if (!query.trim()) {
+      set({ searchResults: [] });
+      return;
+    }
+
+    const { chats } = get();
+    const results = chats.filter((c) =>
+      c.name?.toLowerCase().includes(query.toLowerCase())
+    );
+
+    set({ searchResults: results });
+  },
+
+  clearSearch: () => {
+    set({ searchQuery: '', searchResults: [] });
+  },
+
+  markChatAsRead: (chatId) => {
+    set((state) => ({
+      chats: state.chats.map((c) =>
+        c.id === chatId ? { ...c, unreadCount: 0 } : c
+      ),
+    }));
+  },
+
+  updateChatPreview: (chatId, updates) => {
+    set((state) => ({
+      chats: state.chats.map((c) =>
+        c.id === chatId ? { ...c, ...updates } : c
+      ),
+    }));
+  },
+
+  addChat: (chat) => {
+    set((state) => ({
+      chats: [chat, ...state.chats],
+    }));
+  },
+
+  removeChat: (chatId) => {
+    set((state) => ({
+      chats: state.chats.filter((c) => c.id !== chatId),
+    }));
+  },
+
+  setTyping: (event) => {
+    const { chatId, username, isTyping } = event;
+
+    set((state) => {
+      const users = state.typingUsers[chatId] || [];
+
+      return {
+        typingUsers: {
+          ...state.typingUsers,
+          [chatId]: isTyping
+            ? [...new Set([...users, username])]
+            : users.filter((u) => u !== username),
+        },
+      };
+    });
+  },
+
+  incrementUnread: (chatId) => {
+    set((state) => ({
+      chats: state.chats.map((c) =>
+        c.id === chatId ? { ...c, unreadCount: c.unreadCount + 1 } : c
+      ),
+    }));
+  },
+
+  resetUnread: (chatId) => {
+    set((state) => ({
+      chats: state.chats.map((c) =>
+        c.id === chatId ? { ...c, unreadCount: 0 } : c
+      ),
+    }));
+  },
+
+  updateLastMessage: (chatId, text, time, sender) => {
+    set((state) => ({
+      chats: state.chats.map((c) =>
+        c.id === chatId
+          ? {
+              ...c,
+              lastMessageText: text,
+              lastMessageTime: time,
+              lastMessageSender: sender,
+            }
+          : c
+      ),
+    }));
+  },
+})); 

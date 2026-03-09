@@ -1,0 +1,111 @@
+name: Build and Deploy Nyxgram
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ─── Backend ───
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Create uploads dir
+        working-directory: ./backend
+        run: mkdir -p uploads
+
+      # ─── Frontend ───
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+
+      # ─── Деплой на сервер ───
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            # Установить Node.js если нет
+            if ! command -v node &> /dev/null; then
+              curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+              apt install -y nodejs
+            fi
+            
+            # Установить PM2 если нет
+            if ! command -v pm2 &> /dev/null; then
+              npm install -g pm2
+            fi
+            
+            # Создать директорию
+            mkdir -p /var/www/nyxgram
+            cd /var/www/nyxgram
+            
+            # Клонировать или обновить
+            if [ -d ".git" ]; then
+              git pull origin main
+            else
+              git clone https://github.com/${{ github.repository }}.git .
+            fi
+            
+            # Backend
+            cd /var/www/nyxgram/backend
+            npm install --production
+            mkdir -p uploads
+            
+            # Создать .env если нет
+            if [ ! -f ".env" ]; then
+              cat > .env << 'ENVEOF'
+            NODE_ENV=production
+            PORT=4000
+            HOST=127.0.0.1
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
+            JWT_ACCESS_EXPIRES=15m
+            JWT_REFRESH_EXPIRES=7d
+            ADMIN_USERNAME=MaksimXyila
+            ADMIN_PASSWORD=@MaksimXyila
+            UPLOAD_DIR=./uploads
+            MAX_FILE_SIZE=52428800
+            ENVEOF
+            fi
+            
+            # Frontend
+            cd /var/www/nyxgram/frontend
+            npm install
+            npm run build
+            
+            # Права
+            chmod -R 755 /var/www/nyxgram/frontend/dist
+            chmod -R 755 /var/www/nyxgram/backend/uploads
+            
+            # Запуск/перезапуск backend
+            cd /var/www/nyxgram/backend
+            pm2 describe nyxgram-backend > /dev/null 2>&1
+            if [ $? -eq 0 ]; then
+              pm2 restart nyxgram-backend
+            else
+              npm install -g tsx
+              pm2 start npx --name nyxgram-backend -- tsx src/index.ts
+            fi
+            pm2 save
+            
+            echo "Deploy complete!"

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nyxgram — Нет сети</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0f0f0f;
+      color: #e4e4e4;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      text-align: center;
+      padding: 40px;
+    }
+    .logo {
+      font-size: 36px;
+      font-weight: 700;
+      color: #3390ec;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #e4e4e4;
+    }
+    p {
+      font-size: 15px;
+      color: #8e8e8e;
+      line-height: 1.5;
+      max-width: 320px;
+      margin: 0 auto 24px;
+    }
+    button {
+      padding: 12px 32px;
+      border: none;
+      border-radius: 10px;
+      background-color: #3390ec;
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    button:hover { background-color: #2b7fd4; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">Nyxgram</div>
+    <h1>Нет подключения к сети</h1>
+    <p>Проверьте подключение к интернету и попробуйте снова</p>
+    <button onclick="window.location.reload()">Обновить</button>
+  </div>
+</body>
+</html>
